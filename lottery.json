@@ -1,0 +1,14 @@
+{
+  "FunctionName": "va-abc-lottery-api-get-lottery",
+  "Runtime": "nodejs6.10",
+  "Role": "arn:aws:iam::447985530428:role/va-abc-lottery-api-get-lottery-role",
+  "Handler": "lottery.get",
+  "Code": {
+    "ZipFile": "file://va-abc-lottery-api.zip"
+  },
+  "Description": "VA ABC Lottery - GET Lottery API",
+  "Timeout": 10,
+  "TracingConfig": {
+    "Mode": "Active"
+  }
+}
