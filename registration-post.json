@@ -1,0 +1,14 @@
+{
+  "FunctionName": "va-abc-lottery-api-post-registration",
+  "Runtime": "nodejs6.10",
+  "Role": "arn:aws:iam::447985530428:role/va-abc-lottery-api-registration-role",
+  "Handler": "registration.post",
+  "Code": {
+    "ZipFile": "va-abc-lottery-api.zip"
+  },
+  "Description": "VA ABC Lottery - Post Registration API",
+  "Timeout": 10,
+  "TracingConfig": {
+    "Mode": "Active"
+  }
+}
