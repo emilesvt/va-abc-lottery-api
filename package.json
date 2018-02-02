@@ -8,6 +8,7 @@
   "author": "Eric Miles",
   "license": "ISC",
   "dependencies": {
+    "amazon-cognito-identity-js": "^1.31.0",
     "aws-sdk": "^2.169.0",
     "cheerio": "1.0.0-rc.2",
     "request": "2.83.0",

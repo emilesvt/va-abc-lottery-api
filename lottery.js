@@ -1,5 +1,6 @@
 const cheerio = require("cheerio");
 const rp = require("request-promise");
+const AWS = require("aws-sdk");
 
 exports.get = (event, context, callback) => {
     rp({
@@ -72,4 +73,24 @@ exports.get = (event, context, callback) => {
             },
         });
     });
+};
+
+exports.post = (event, context, callback) => {
+    console.log(`Received event: ${event}`);
+
+    const requestBody = JSON.parse(event.body);
+
+    if (requestBody.accessToken) {
+        const cognito = new AWS.CognitoIdentityServiceProvider();
+        cognito.getUser({AccessToken: requestBody.accessToken}, (err, data) => {
+            requestBody.email = data.Username;
+            requestBody.firstName = data.UserAttributes.find((attribute) => attribute.Name === "given_name").Value;
+            requestBody.lastName = data.UserAttributes.find((attribute) => attribute.Name === "family_name").Value;
+            requestBody.phone = data.UserAttributes.find((attribute) => attribute.Name === "phone_number").Value;
+            requestBody.storeNumber = data.UserAttributes.find((attribute) => attribute.Name === "custom:store_numb").Value;
+            requestBody.storeAddress = data.UserAttributes.find((attribute) => attribute.Name === "custom:store_address").Value;
+        });
+    }
+
+
 };
